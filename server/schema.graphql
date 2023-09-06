@@ -1,0 +1,32 @@
+type Query {
+    accounts: AccountsResult
+    account(id: String!): Account
+    transactions: TransactionsResult
+}
+
+type AccountsResult {
+    accounts: [Account]
+    count: Int
+}
+
+type TransactionsResult {
+    transactions: [Transaction]
+    count: Int
+}
+
+type Account {
+    id: String
+    name: String
+    password: String
+    email: String
+    transactions: [Transaction]
+    type: String
+}
+
+type Transaction {
+    id: String
+    accountId: String
+    date: String
+    amount: Float
+    type: String
+}
