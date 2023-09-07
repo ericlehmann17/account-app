@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/service/AccountService';
-import { Account } from 'src/app/interfaces/Account';
+import { Account, AccountsResult } from 'src/app/interfaces/Account';
+import { AccountsService } from 'src/app/service/accounts.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [AccountService]
+  providers: [AccountsService]
 })
 export class HomeComponent implements OnInit {
-  private account: Account[];
+  accounts: Account[] = [];
+  count: number = 0;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountsService) { }
 
   //TODO: write account service and get accounts on page init (lifecycle hook)
-  async ngOnInit(): void {
-    this.account = this.accountService.getAccounts();
-    throw new Error('Method not implemented.');
-
-
+  async ngOnInit(): Promise<void> {
+    const res = await this.accountService.getAccounts();
+    this.accounts = res.accounts;
+    this.count = res.count;
   }
-
 }
 
