@@ -1,13 +1,16 @@
-<p>Welcome, user!</p>
-<table>
+<h1 class="welcome">Welcome, user!</h1>
+<h3 class="title">Accounts</h3>
+<table class="accounts-table">
     <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Email</th>
+        <th class="accounts-table-header">Id</th>
+        <th class="accounts-table-header">Name</th>
+        <th class="accounts-table-header">Email</th>
+        <th class="accounts-table-header">Type</th>
     </tr>
     <tr *ngFor="let account of accounts">
-        <td><a routerLink="/account">{{ account.id }}</a></td>
+        <td><a routerLink="/account" [queryParams]="{id: account.id}">{{ account.id }}</a></td>
         <td>{{ account.name }}</td>
         <td>{{ account.email }}</td>
+        <td>{{ account.type }}</td>
     </tr>
 </table>
