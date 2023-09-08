@@ -10,6 +10,8 @@ import { Account, AccountsResult } from '../interfaces/Account';
 export class AccountsService {
 
   private accountsQuery: QueryRef<{accounts: AccountsResult}>;
+  private accountQuery: QueryRef<{account: Account}, {id: string}>;
+
 
   constructor(private apollo: Apollo) {
     this.accountsQuery = this.apollo.watchQuery({
@@ -31,10 +33,30 @@ export class AccountsService {
         }
     }`
     });
-  }
+    this.accountQuery = this.apollo.watchQuery({
+      query: gql`accounts {
+        id
+        name
+        email
+        transactions {
+            id
+            accountId
+            amount
+            date
+            type
+        }
+        type
+    }`
+  });
+}
 
   async getAccounts(): Promise<AccountsResult> {
     const result = await this.accountsQuery.refetch();
     return result.data.accounts;
   }
+
+  async getAccount(id: string): Promise<Account> {
+      const result = await this.accountQuery.refetch({id});
+      return result.data.account;
+    }
 }
