@@ -47,6 +47,11 @@
     font-weight: 600;
   }
 
+  .brand-logo {
+    display: block;  
+    margin-left: auto;
+    margin-right: auto;
+  }
   .toolbar img {
     margin: 0 16px;
   }
@@ -302,7 +307,14 @@
   }
 </style>
 
-
+<main>
+  <header class="brand-name">
+    <img class="brand-logo" src="/assets/logo.png" alt="logo" aria-hidden="true">
+  </header>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+</main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
@@ -312,4 +324,4 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<router-outlet></router-outlet>
+

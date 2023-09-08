@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountComponent } from './components/account/account.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AccountComponent } from './components/account/account.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

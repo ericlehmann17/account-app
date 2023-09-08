@@ -34,18 +34,20 @@ export class AccountsService {
     }`
     });
     this.accountQuery = this.apollo.watchQuery({
-      query: gql`accounts {
-        id
-        name
-        email
-        transactions {
+      query: gql`query account($id: String!){
+        account(id: $id) {
             id
-            accountId
-            amount
-            date
+            name
+            email
+            transactions {
+                id
+                accountId
+                amount
+                date
+                type
+            }
             type
         }
-        type
     }`
   });
 }

@@ -6,7 +6,7 @@
         <th>Email</th>
     </tr>
     <tr *ngFor="let account of accounts">
-        <td><a [routerLink]='/account' [queryParams]='{{ account.id }}'>{{ account.id }}</a></td>
+        <td><a routerLink="/account">{{ account.id }}</a></td>
         <td>{{ account.name }}</td>
         <td>{{ account.email }}</td>
     </tr>
