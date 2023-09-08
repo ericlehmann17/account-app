@@ -18,10 +18,12 @@ export class AccountsService {
             accounts {
                 id
                 name
+                email
                 transactions {
                     id
                     accountId
                     amount
+                    date
                     type
                 }
                 type

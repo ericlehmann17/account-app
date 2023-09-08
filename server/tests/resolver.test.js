@@ -1,4 +1,32 @@
+const { buildSchema }= require('graphql');
+const express = require('express');
+const fs = require('fs');
+const { graphqlHTTP } = require('express-graphql');
+const accountsQueryResolver = require('../src/Account/query');
+const transactionsQueryResolver = require('../src/Transaction/query');
+
+const schema = buildSchema(fs.readFileSync('/Users/ericlehmann/Work/repos/account-app/server/schema.graphql', 'utf-8'));
+
 require('isomorphic-fetch');
+
+const app = express();
+const root = {
+    ...accountsQueryResolver,
+    ...transactionsQueryResolver,
+}
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+}));
+
+
+
+// before all tests, we need to start the express graphql server
+beforeAll(function () {
+    // start the express server
+    server = app.listen(3000);
+});
 
 
 
@@ -121,4 +149,11 @@ test('query for a single account given account id, requesting specific fields', 
         expect(t.hasOwnProperty('type')).toBe(true);
         expect(t.hasOwnProperty('id')).toBe(true);
       })
+
+      
+});
+
+afterAll(() =>{
+    //stop the express server
+    server.close();
 });
