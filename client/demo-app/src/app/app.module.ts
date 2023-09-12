@@ -9,6 +9,7 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountComponent } from './components/account/account.component';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     GraphQLModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

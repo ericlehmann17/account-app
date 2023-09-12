@@ -1,0 +1,9 @@
+.account-details {
+    border: 2px solid gray;
+    padding: 10px;
+}
+
+.account {
+    display: flexbox;
+    width: 100%;
+}

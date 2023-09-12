@@ -1,8 +1,20 @@
-<div class="account-flexbox">
+<div class="account">
+    <p><a routerLink="/"><mat-icon>arrow_back</mat-icon></a></p>
     <div class="account-details">
-        <p>Id: {{ account.id }}</p>
-        <p>Name: {{ account.name }}</p>
-        <p>Email: {{ account.email }}</p>
-        <p>Type: {{ account.type }}</p>
+        <h2>Account Details</h2>
+        <div>
+            <p>Id: {{ account.id }}</p>
+            <p>Name: {{ account.name }}</p>
+            <p>Email: {{ account.email }}</p>
+            <p>Type: {{ account.type }}</p>
+        </div>
+    </div>
+    <div class="account-transactions">
+        <h2>Account Transactions</h2>
+        <ul>
+            <li *ngFor="let transaction of account.transactions">
+                <p><a>Id: {{ transaction.id }}</a>, Date: {{ transaction.date }}</p>
+            </li>
+        </ul>
     </div>
 </div>

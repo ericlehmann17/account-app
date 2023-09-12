@@ -58,8 +58,7 @@ export class AccountsService {
   }
 
   async getAccount(id: string): Promise<Account> {
-      const result = await this.accountQuery.refetch({id});
-      console.log(result.data.account)
-      return result.data.account;
-    }
+    const result = await this.accountQuery.refetch({id});
+    return result.data.account;
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { Account } from 'src/app/interfaces/Account';
 import { AccountsService } from'src/app/service/accounts.service';
 
@@ -12,12 +13,13 @@ import { AccountsService } from'src/app/service/accounts.service';
 export class AccountComponent implements OnInit {
 
   account!: Account;
-
-  constructor(private route: ActivatedRoute, private accountService: AccountsService) { }
+  constructor(private route: ActivatedRoute, private accountService: AccountsService) {
+    
+  }
   
   ngOnInit(): void {
-    this.route.params.subscribe(async (params) => {
-      this.account = await this.accountService.getAccount(params['id']);
+    this.route.queryParams.subscribe((params) => {
+      this.accountService.getAccount(params['id']).then(res => this.account = res);
     });
   }
 
