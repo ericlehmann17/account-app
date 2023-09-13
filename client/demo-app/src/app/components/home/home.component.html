@@ -1,16 +1,32 @@
-<h1 class="welcome">Welcome, user!</h1>
+<h1 class="welcome">Welcome, administrator!</h1>
 <h3 class="title">Accounts</h3>
-<table class="accounts-table">
-    <tr>
-        <th class="accounts-table-header">Id</th>
-        <th class="accounts-table-header">Name</th>
-        <th class="accounts-table-header">Email</th>
-        <th class="accounts-table-header">Type</th>
-    </tr>
-    <tr *ngFor="let account of accounts">
-        <td><a routerLink="/account" [queryParams]="{id: account.id}">{{ account.id }}</a></td>
-        <td>{{ account.name }}</td>
-        <td>{{ account.email }}</td>
-        <td>{{ account.type }}</td>
-    </tr>
-</table>
+<table mat-table [dataSource]="accounts">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let account"  routerLink="/account" [queryParams]="{id: account.id}"> {{ account.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let account"> {{ account.name }}  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let account"> {{ account.email }} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Account Type</th>
+        <td mat-cell *matCellDef="let account"> {{ account.type }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>

@@ -1,9 +1,13 @@
 .accounts-table {
-    width: 100%;
+    width: 90%;
+    /* center this */
+    margin: 0 auto;
 }
 
 .accounts-table-header {
     border-bottom: 2px solid black;
+    /* align text to the center */
+    text-align: left;
 }
 
 .title {
@@ -14,3 +18,4 @@
     text-align: center;
     margin-bottom: 20px;
 }
+

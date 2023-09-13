@@ -11,6 +11,7 @@ import { AccountsService } from 'src/app/service/accounts.service';
 export class HomeComponent implements OnInit {
   accounts: Account[] = [];
   count: number = 0;
+  displayedColumns: string[] = ['id', 'name', 'email', 'type'];
 
   constructor(private accountService: AccountsService) { }
 

@@ -1,20 +1,84 @@
 <div class="account">
     <p><a routerLink="/"><mat-icon>arrow_back</mat-icon></a></p>
     <div class="account-details">
-        <h2>Account Details</h2>
-        <div>
-            <p>Id: {{ account.id }}</p>
-            <p>Name: {{ account.name }}</p>
-            <p>Email: {{ account.email }}</p>
-            <p>Type: {{ account.type }}</p>
-        </div>
-    </div>
-    <div class="account-transactions">
-        <h2>Account Transactions</h2>
-        <ul>
-            <li *ngFor="let transaction of account.transactions">
-                <p><a>Id: {{ transaction.id }}</a>, Date: {{ transaction.date }}</p>
-            </li>
-        </ul>
+        <h2>
+            Account Details
+        </h2>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Id</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{ account.id }}</mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Id</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{ '$' + balance.toFixed(2) }}</mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Name</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{ account.name }}</mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Email</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{ account.email }}</mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Account Type</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{ account.type }}</mat-card-content>
+        </mat-card>
+        <br/>
+        <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                  <mat-panel-title>Account Transactions</mat-panel-title>
+                  <mat-panel-description>Click for a list of this account's transactions</mat-panel-description>
+              </mat-expansion-panel-header>
+              <table mat-table [dataSource]="account.transactions">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>Id</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.id}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let transaction"> {{this.datePipe.transform(transaction.date, 'MM/dd/YYYY')}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="accountId">
+                    <th mat-header-cell *matHeaderCellDef>Account Id</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.accountId}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef>Amount</th>
+                    <td mat-cell *matCellDef="let transaction"> {{'$'+transaction.amount.toFixed(2)}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef>Type</th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction.type}} </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedTransactionColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedTransactionColumns"></tr>
+            
+              </table>
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
 </div>
+
+
