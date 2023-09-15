@@ -21,13 +21,6 @@ export class AccountsService {
                 id
                 name
                 email
-                transactions {
-                    id
-                    accountId
-                    amount
-                    date
-                    type
-                }
                 type
             }
         }
@@ -39,13 +32,6 @@ export class AccountsService {
             id
             name
             email
-            transactions {
-                id
-                accountId
-                amount
-                date
-                type
-            }
             type
         }
     }`
