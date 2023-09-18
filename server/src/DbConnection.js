@@ -14,8 +14,8 @@ class DbConnection {
             database: 'account-app',
             idleTimeoutMillis: '3000'
         });
-        const client = await this.pgPool.connect();
-        const result = await client.query(query);
+        const client = await this.pgPool.connect()
+        const result = await client.query(query).then(result => result.rows);
         return result;
       }
 }

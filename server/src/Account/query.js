@@ -12,7 +12,7 @@ const accountsQueryResolver = {
     },
     account: async (args) => {
         const accountsData = new AccountsData();
-        const account = await accountsData.getAccountById(args.id);
+        const account = await accountsData.getAccountById(args.account_id).then(res => res[0]);
         return account
     }
 };
