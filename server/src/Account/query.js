@@ -5,7 +5,6 @@ const accountsQueryResolver = {
     accounts: async (args) => {
         const accountsData = new AccountsData();
         const accounts = await accountsData.getAccounts();
-        console.log(accounts);
         return {
             accounts: accounts,
             count: accounts.length
@@ -13,7 +12,7 @@ const accountsQueryResolver = {
     },
     account: async (args) => {
         const accountsData = new AccountsData();
-        const account = await accountsData.getAccount(args.id);
+        const account = await accountsData.getAccountById(args.id);
         return account
     }
 };

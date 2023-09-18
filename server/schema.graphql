@@ -1,7 +1,7 @@
 type Query {
     accounts: AccountsResult
-    account(id: String!): Account
-    transactions(id: String!): TransactionsResult
+    account(account_id: String!): Account
+    transactions(account_id: String!): TransactionsResult
 }
 
 type AccountsResult {
@@ -15,17 +15,17 @@ type TransactionsResult {
 }
 
 type Account {
-    id: String
+    account_id: String
     name: String
     password: String
     email: String
-    type: String
+    account_type: String
 }
 
 type Transaction {
-    id: String
-    accountId: String
+    transaction_id: String
+    account_id: String
     date: String
     amount: Float
-    type: String
+    transaction_type: String
 }

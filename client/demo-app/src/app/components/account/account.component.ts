@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
   
   ngOnInit(): void {
     this.route.queryParams.subscribe(async (params) => {
-      await this.accountService.getAccount(params['id']).then(res => {
+      await this.accountService.getAccount(params['account_id']).then(res => {
         this.account = res;
         // this.balance = this.account.transactions.reduce((a, b) => b.type == TransactionType.DEPOSIT ? a + b.amount : a - b.amount , 0);
       });

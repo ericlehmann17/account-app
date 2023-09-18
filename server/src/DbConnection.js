@@ -4,6 +4,8 @@ class DbConnection {
     pgPool;
 
     constructor() {
+    }
+    async connectAndQuery(query) {
         this.pgPool = new Pool({
             host: 'localhost',
             port: 5432,
@@ -12,13 +14,8 @@ class DbConnection {
             database: 'account-app',
             idleTimeoutMillis: '3000'
         });
-    }
-    async connectAndQuery(query) {
-        const client = await this.pgPool.connect()
-        const result = client.query(query).then(result => {
-            return result.rows;
-        });
-        console.log(result);
+        const client = await this.pgPool.connect();
+        const result = await client.query(query);
         return result;
       }
 }

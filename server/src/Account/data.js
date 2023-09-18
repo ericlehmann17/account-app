@@ -28,12 +28,12 @@ class AccountsData {
     return await this.dbConnection.connectAndQuery(query);
   };
 
-  getAccountById(id) {
+  async getAccountById(accountId) {
     const query = {
       text: "SELECT * FROM accounts WHERE accounts.account_id = $1",
-      values: [id]
+      values: [accountId]
     };
-    return this.dbConnection.connectAndQuery(query);
+    return await this.dbConnection.connectAndQuery(query);
   };
 
 }

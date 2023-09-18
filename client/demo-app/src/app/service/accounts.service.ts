@@ -18,21 +18,21 @@ export class AccountsService {
       query: gql`query {
         accounts {
             accounts {
-                id
+                account_id
                 name
                 email
-                type
+                account_type
             }
         }
     }`
     });
     this.accountQuery = this.apollo.watchQuery({
       query: gql`query account($id: String!){
-        account(id: $id) {
-            id
+        account(account_id: $id) {
+            account_id
             name
             email
-            type
+            account_type
         }
     }`
   });
@@ -47,4 +47,7 @@ export class AccountsService {
     const result = await this.accountQuery.refetch({id});
     return result.data.account;
   }
+
+  
 }
+

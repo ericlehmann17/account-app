@@ -17,10 +17,11 @@ export class HomeComponent implements OnInit {
 
   //TODO: write account service and get accounts on page init (lifecycle hook)
   async ngOnInit(): Promise<void> {
-    const res = await this.accountService.getAccounts()
-    console.log(res);
-    this.accounts = res.accounts;
-    this.count = res.count;
+    await this.accountService.getAccounts().then(res => {
+      this.accounts = res.accounts;
+      this.count = res.count;
+    });
+    
   }
 }
 

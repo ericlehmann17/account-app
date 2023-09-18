@@ -3,11 +3,11 @@
 import { AccountType } from "./AccountType";
 
 export interface Account {
-    id: string;
+    account_id: string;
     name: string;
     password: string;
     email: string;
-    type: AccountType;
+    account_type: AccountType;
 }
 
 export interface AccountsResult {
