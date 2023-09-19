@@ -8,7 +8,7 @@ export interface Transaction {
     transaction_type: TransactionType;
 }
 
-export interface TransactionsResponse {
+export interface TransactionsResult {
     transactions: Transaction[];
     count: number;
 }
