@@ -1,15 +1,19 @@
-const accounts = require ('./data.js');
+const { AccountsData } = require ('./data.js');
 
 
 const accountsQueryResolver = {
-    accounts: (args) => {
+    accounts: async (args) => {
+        const accountsData = new AccountsData();
+        const accounts = await accountsData.getAccounts();
         return {
             accounts: accounts,
             count: accounts.length
         }
     },
-    account: (args) => {
-        return accounts.find(account => account.id === args.id)
+    account: async (args) => {
+        const accountsData = new AccountsData();
+        const account = await accountsData.getAccountById(args.account_id).then(res => res[0]);
+        return account
     }
 };
 

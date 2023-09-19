@@ -10,29 +10,44 @@ import { Account, AccountsResult } from '../interfaces/Account';
 export class AccountsService {
 
   private accountsQuery: QueryRef<{accounts: AccountsResult}>;
+  private accountQuery: QueryRef<{account: Account}, {account_id: number}>;
+
 
   constructor(private apollo: Apollo) {
     this.accountsQuery = this.apollo.watchQuery({
       query: gql`query {
         accounts {
             accounts {
-                id
+                account_id
                 name
-                transactions {
-                    id
-                    accountId
-                    amount
-                    type
-                }
-                type
+                email
+                account_type
             }
         }
     }`
     });
-  }
+    this.accountQuery = this.apollo.watchQuery({
+      query: gql`query account($account_id: Int!){
+        account(account_id: $account_id) {
+            account_id
+            name
+            email
+            account_type
+        }
+    }`
+  });
+}
 
   async getAccounts(): Promise<AccountsResult> {
     const result = await this.accountsQuery.refetch();
     return result.data.accounts;
   }
+
+  async getAccount(account_id: number): Promise<Account> {
+    const result = await this.accountQuery.refetch({account_id});
+    return result.data.account;
+  }
+
+  
 }
+

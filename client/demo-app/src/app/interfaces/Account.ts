@@ -1,13 +1,13 @@
 // write a Typescript account type which is the same as the account type defined on the server
 // above was an attempt to get TabNine to generate code from natural language
-import { Transaction } from "./Transaction";
+import { AccountType } from "./AccountType";
 
 export interface Account {
-    id: string;
+    account_id: string;
     name: string;
     password: string;
     email: string;
-    transactions: Transaction[];
+    account_type: AccountType;
 }
 
 export interface AccountsResult {

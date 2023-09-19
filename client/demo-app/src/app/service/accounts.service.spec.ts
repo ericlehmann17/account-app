@@ -13,4 +13,13 @@ describe('AccountsService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  //test the getAccounts method
+  it('should return an array of accounts', async () => {
+    const accounts = await service.getAccounts();
+    expect(accounts).toBeTruthy();
+  });
 });
+
+  
+

@@ -1,0 +1,18 @@
+.account-details {
+    padding: 10px;
+}
+
+.account {
+    display: flexbox;
+    width: 80%;
+}
+
+.account-transactions {
+    border: 2px solid gray;
+    /*  */
+}
+
+.transaction {
+    display: flex;
+    flex-direction: column;
+}

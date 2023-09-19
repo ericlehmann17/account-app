@@ -1,16 +1,43 @@
-transactions = require('../Transaction/data.js');
+const {DbConnection} = require('../DbConnection');
+// accounts = []
+// for(var i=0; i<10; i++){
+//   accountId = i.toString().padStart(6, '0');
+//   account = {
+//     id: accountId,
+//     name: "Test" + i,
+//     password: "Test" + i,
+//     email: "TestEmail" + i+"@test.com",
+//     transactions: transactions.filter(transaction => transaction.accountId == accountId),
+//     type: i%2 == 0 ? "Checking" : "Savings"
+//   };
+//   accounts.push(account);
+// };
 
-accounts = []
-for(var i=0; i<10; i++){
-  account = {
-    id: i.toString(),
-    name: "Test" + i,
-    password: "Test" + i,
-    email: "TestEmail" + i,
-    transactions: transactions.filter(transaction => transaction.accountId == i.toString()),
-    type: i%2 == 0 ? "Checking" : "Savings"
+// instances will be able to query the accounts table
+class AccountsData {
+  dbConnection;
+
+  constructor() {
+    this.dbConnection = new DbConnection();
   };
-  accounts.push(account);
-};
+  
+  async getAccounts() {
+    const query = {
+      text: "SELECT * FROM accounts"
+    }
+    return await this.dbConnection.connectAndQuery(query);
+  };
 
-module.exports = accounts;
+  async getAccountById(accountId) {
+    const query = {
+      text: "SELECT * FROM accounts WHERE accounts.account_id = $1",
+      values: [accountId]
+    };
+    return await this.dbConnection.connectAndQuery(query);
+  };
+
+}
+
+
+module.exports = { AccountsData }
+

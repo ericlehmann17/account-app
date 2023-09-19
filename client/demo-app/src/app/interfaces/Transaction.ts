@@ -1,14 +1,14 @@
 import { TransactionType } from "./TransactionType";
 
 export interface Transaction {
-    id: string;
-    accountId: string;
+    transaction_id: string;
+    account_id: string;
     amount: number;
     date: Date;
-    type: TransactionType;
+    transaction_type: TransactionType;
 }
 
-export interface TransactionsResponse {
+export interface TransactionsResult {
     transactions: Transaction[];
     count: number;
 }
